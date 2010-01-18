@@ -12,6 +12,7 @@ begin
     gem.authors = ["Manuel Aristaran"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.add_dependency('rest-client', '>= 1.0.4')
+    gem.add_dependency('json', '>= 1.2.0')
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
