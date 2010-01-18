@@ -5,13 +5,13 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "rmeaningtool"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{A Ruby library for the text categorization service Meaningtool}
+    gem.description = %Q{A Ruby library for the text categorization service Meaningtool}
     gem.email = "jazzido@jazzido.com"
     gem.homepage = "http://github.com/jazzido/rmeaningtool"
     gem.authors = ["Manuel Aristaran"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.add_dependency('rest-client', '>= 1.0.4')
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
