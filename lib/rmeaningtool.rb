@@ -1,6 +1,9 @@
+require 'restclient'
+require 'json'
 
 module RMeaningTool
-  MT_BASE_URL = "http://ws.meaningtool.com/0.1/trees"
+  #MT_BASE_URL = "http://ws.meaningtool.com/0.1/trees"
+  MT_BASE_URL = "http://ws.meaningtool.com/ct/restv0.1"
 
   class Result
     attr_reader :status_errcode, :status_message, :data
@@ -26,7 +29,8 @@ module RMeaningTool
     def initialize(api_key, tree_key, base_url=MT_BASE_URL)
       @api_key = api_key
       @tree_key = tree_key
-      @base_url = base_url
+      @base_url = "#{base_url}/#{tree_key}"
+      puts @base_url
     end
 
     
@@ -34,7 +38,7 @@ module RMeaningTool
       
       validate_parameters(source, input, options)
       
-      url = "#{@base_url}/categories"
+      url = "#{@base_url}/categories.json"
 
       headers = {}
       data = { 
@@ -56,7 +60,7 @@ module RMeaningTool
       end
 
 
-      parse_result(req(:get, url, data, headers))
+      parse_result(req(:post, url, data, headers))
       
     end
 
@@ -98,7 +102,7 @@ module RMeaningTool
     end
 
     def validate_parameters(source, input, options)
-      unless source.include? %w{text url html}
+      unless %w{text url html}.include? source
         raise ArgumentError, "The 'source' is invalid" 
       end
       
